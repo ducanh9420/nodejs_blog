@@ -1,7 +1,7 @@
 <div class="mt-4">
   <div>
     <h3>My Course</h3>
-    <a href="/me/trash/courses">Recycle Bin</a>
+    <a href="/me/trash/courses">Recycle Bin ({{deletedCount}})</a>
   </div>
 
   <table class="table mt-4">
@@ -31,7 +31,7 @@
             >Delete </a>
           </td>
         </tr>
-        {{else}}
+      {{else}}
         <tr>
           <td colspan="5" class="text-center">
             You have not posted any courses yet.
@@ -62,7 +62,11 @@
         <p>Are you sure to delete this course?</p>
       </div>
       <div class="modal-footer">
-        <button id="btn-delete-course" type="button" class="btn btn-danger">Delete</button>
+        <button
+          id="btn-delete-course"
+          type="button"
+          class="btn btn-danger"
+        >Delete</button>
         <button
           type="button"
           class="btn btn-secondary"
@@ -73,26 +77,16 @@
   </div>
 </div>
 
-{{!-- Delete hidden form --}}
+{{! Delete hidden form }}
 <form name="delete-course-form" method="POST"></form>
 <form name="restore-course-form" method="POST"></form>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var courseId;
-    var deleteForm = document.forms['delete-course-form'];
-    var btnDeleteCourse = document.getElementById('btn-delete-course');
-
-    // When dialog confirm clicked
-    $('#delete-course-modal').on('show.bs.modal', function(event) {
-      var button = $(event.relatedTarget);
-      courseId = button.data('id');
-    });
-
-    // When delete course btn clicked
-    btnDeleteCourse.onclick = function() {
-      deleteForm.action = '/courses/' + courseId + '?_method=DELETE';
-      deleteForm.submit();
-    };
-  });
+  document.addEventListener('DOMContentLoaded', function() { var courseId; var
+  deleteForm = document.forms['delete-course-form']; var btnDeleteCourse =
+  document.getElementById('btn-delete-course'); // When dialog confirm clicked
+  $('#delete-course-modal').on('show.bs.modal', function(event) { var button =
+  $(event.relatedTarget); courseId = button.data('id'); }); // When delete
+  course btn clicked btnDeleteCourse.onclick = function() { deleteForm.action =
+  '/courses/' + courseId + '?_method=DELETE'; deleteForm.submit(); }; });
 </script>
