@@ -1,5 +1,8 @@
 <div class="mt-4">
-  <h3>My Course</h3>
+  <div>
+    <h3>My Course</h3>
+    <a href="/me/trash/courses">Recycle Bin</a>
+  </div>
 
   <table class="table mt-4">
     <thead>
@@ -26,6 +29,13 @@
               data-id="{{this._id}}"
               data-target="#delete-course-modal"
             >Delete </a>
+          </td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="5" class="text-center">
+            You have not posted any courses yet.
+            <a href="/courses/create">Post a course</a>
           </td>
         </tr>
       {{/each}}
@@ -65,6 +75,7 @@
 
 {{!-- Delete hidden form --}}
 <form name="delete-course-form" method="POST"></form>
+<form name="restore-course-form" method="POST"></form>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
